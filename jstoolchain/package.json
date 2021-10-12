@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "autoprefixer": "^10.3.7",
+    "postcss-cli": "^9.0.1",
+    "tailwindcss": "^2.2.16"
+  },
+  "name": "next_pm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+       "build": "postcss css/tailwind.css -o ../static/css/base.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

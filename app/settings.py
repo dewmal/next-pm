@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'next_pm.apps.NextPmConfig',
+    'project_detail.apps.ProjectDetailConfig'
 ]
 
 MIDDLEWARE = [

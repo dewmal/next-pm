@@ -1,0 +1,55 @@
+{% extends "template/base.html" %}
+
+{% block content %}
+    <form method="post" class="grid gap-2 grid-cols-1">
+        {% csrf_token %}
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Name</span>
+            </label>
+            <input type="text" placeholder="Name" name="proj-name" class="input input-bordered">
+        </div>
+
+        <div class="grid gap-2 grid-cols-2">
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Start Date</span>
+                </label>
+                <input type="date" placeholder="Start Date" name="proj-start_date" class="input input-bordered">
+            </div>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Expected end Date</span>
+                </label>
+                <input type="date" placeholder="Expected End Date" name="proj-expected_end_date"
+                       class="input input-bordered">
+            </div>
+        </div>
+
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Description</span>
+            </label>
+            <textarea name="proj-description" class="textarea h-24 textarea-bordered" placeholder="Description"></textarea>
+        </div>
+
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Git link</span>
+            </label>
+            <input type="text" placeholder="Git link" name="proj-git_link" class="input input-bordered">
+        </div>
+
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Google Drive Link</span>
+            </label>
+            <input type="text" placeholder="Google Drive Link" name="proj-drive_folder_id" class="input input-bordered">
+        </div>
+        <div class="form-control">
+            <button class="btn btn-primary">Save</button>
+        </div>
+    </form>
+
+
+{% endblock %}

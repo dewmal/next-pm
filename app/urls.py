@@ -19,8 +19,10 @@ from django.urls import path
 from django.conf.urls import include
 
 from next_pm.urls import urlpatterns as next_pm_urls
+from project_detail.urls import urlpatterns as project_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^', include(next_pm_urls))
+    url(r'^', include(next_pm_urls)),
+    url(r'^project/', include(project_urls))
 ]

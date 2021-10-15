@@ -1,17 +1,25 @@
 {
   "dependencies": {
     "autoprefixer": "^10.3.7",
+    "daisyui": "^1.14.4",
+    "lit": "^2.0.2",
     "postcss-cli": "^9.0.1",
     "tailwindcss": "^2.2.16"
   },
   "name": "next_pm",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-       "build": "postcss css/tailwind.css -o ../static/css/base.css"
+    "build": "postcss css/tailwind.css -o ../static/css/base.css",
+    "build:css:app": "postcss css/tailwind.css -o ./src/style.css",
+    "dev": "webpack --mode development --watch",
+    "build:app": "webpack --mode production"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0"
+  }
 }

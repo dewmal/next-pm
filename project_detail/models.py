@@ -25,6 +25,6 @@ class Task(models.Model):
     description = models.TextField()
     start_date = models.DateTimeField()
     expected_hours = models.FloatField()
-    actual_hours = models.FloatField()
+    actual_hours = models.FloatField(default=0)
     project = models.ForeignKey(Project, on_delete=models.RESTRICT)
     tags = models.ManyToManyField(Tag)

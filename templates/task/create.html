@@ -1,6 +1,11 @@
 {% extends "template/base.html" %}
 {% block title %}Create Task for {{ project.name }}{% endblock %}
 {% block content %}
+    {% for error in errors %}
+        {{ error }}
+    {% endfor %}
+
+
     <form method="post" class="grid gap-4 grid-cols-3">
         {% csrf_token %}
         <input name="task-project" value="{{ project.id }}" type="hidden">

@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 
 from .forms import ProjectForm, TaskForm
-from .models import Project
+from .models import Project, Task
 
 
 @require_http_methods(["GET", "POST"])
@@ -30,7 +30,8 @@ def project_index(request):
 
 def project_view(request, id):
     project = Project.objects.get(id=id)
-    return render(request, "project/view.html", context={"project": project})
+    tasks = Task.objects.filter(project=project).all()
+    return render(request, "project/view.html", context={"project": project, "tasks": tasks})
 
 
 # Create your views here.

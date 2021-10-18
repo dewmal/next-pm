@@ -13,5 +13,34 @@
 
 {% block content %}
     {{ project.name }}
-    <button>Create Task</button>
+
+
+    <div class="overflow-x-auto">
+        <table class="table w-full">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Expected Hours</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>
+                        <a href="{% url 'project-view' task.id %}">
+                            {{ task.name }}
+                        </a>
+                    </td>
+                    <td> {{ task.actual_hours }}/{{ task.expected_hours }}</td>
+                    <td>{{ task.start_date }}</td>
+                    <td>{{ task.end_date }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
 {% endblock %}

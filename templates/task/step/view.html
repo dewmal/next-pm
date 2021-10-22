@@ -1,12 +1,15 @@
 {% extends "template/base.html" %}
 
 {% block title %}
-    {{ step.task.name }}
+    <a  href="{% url 'task-view' step.task.id %}">{{ step.task.name }}</a>
 {% endblock %}
 
 {% block content %}
-    <p>Name {{ step.name }}</p>
-    <p>Start Time {{ step.start_time }}</p>
-    <p>Comment {{ step.comment }}</p>
-    <p>Commits {{ step.commits }}</p>
+
+
+{#    {{ form.as_p }}#}
+{#    <p>Name {{ step.name }}</p>#}
+{#    <p>Start Time {{ step.start_time }}</p>#}
+{#    <p>Comment {{ step.comment }}</p>#}
+{#    <p>Commits {{ step.commits }}</p>#}
 {% endblock %}

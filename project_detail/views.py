@@ -5,10 +5,28 @@ from .forms import ProjectForm, TaskForm, StepForm
 from .models import Project, Task, Step
 
 
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "POST"])
 def step_view(request, step_id):
     step = Step.objects.get(id=step_id)
-    return render(request, "task/step/view.html", context={"step": step})
+    form = StepForm(instance=step)
+    errors = None
+    if request.method == "POST":
+        form = StepForm(request.POST,
+                        request.FILES,
+                        instance=step,
+                        prefix="task-step")
+        if form.is_valid():
+            step = form.save(commit=False)
+            step.save()
+        else:
+            print(form.errors)
+            errors = form.errors
+    return render(request, "task/step/create.html", context={
+        "task": step.task,
+        "step": step,
+        "form": form,
+        "errors": errors
+    })
 
 
 @require_http_methods(["GET", "POST"])
@@ -24,7 +42,8 @@ def task_step_create(request, task_id):
             print(form.errors)
             errors = form.errors
     return render(request, "task/step/create.html", context={"task": task,
-                                                             "form": form, "errors": errors})
+                                                             "form": form,
+                                                             "errors": errors})
 
 
 def task_view(request, id):
@@ -41,7 +60,7 @@ def task_create(request, project_id):
     if request.method == "POST":
         form = TaskForm(request.POST, request.FILES, prefix="task")
         if form.is_valid():
-            form.save()
+            form.save(commit=False)
         else:
             print(form.errors)
             errors = form.errors

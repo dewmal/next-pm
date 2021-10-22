@@ -1,5 +1,5 @@
 {% extends "template/base.html" %}
-{% block title %}Create Step for {{ task.name }}{% endblock %}
+{% block title %}Create Step for  <a href="{% url 'task-view' task.id %}">{{ task.name }}</a>{% endblock %}
 {% block content %}
     {% for error in errors %}
         <p>{{ error }}</p>
@@ -8,7 +8,6 @@
     <form method="post" class="grid gap-4 grid-cols-3">
         {% csrf_token %}
         <input name="task-step-task" value="{{ task.id }}" type="hidden">
-        <input name="task-step-status" value="OP" type="hidden">
 
         <div class="col-span-2 grid gap-2 grid-cols-1">
             <div class="form-control">
@@ -16,6 +15,10 @@
                     <span class="label-text">Name</span>
                 </label>
                 <input type="text" placeholder="Name"
+                        {% if step is not None %}
+                       readonly="true"
+                       value="{{ step.name }}"
+                        {% endif %}
                        name="task-step-name" class="input input-bordered">
             </div>
 
@@ -23,11 +26,21 @@
                 <label class="label">
                     <span class="label-text">Comment</span>
                 </label>
-                <textarea name="task-step-comment" rows="8" class="textarea h-24 textarea-bordered"
-                          placeholder="Comment"></textarea>
+                <textarea
+                        name="task-step-comment" rows="8" class="textarea h-24 textarea-bordered"
+                        placeholder="Comment">{% if step is not None %}
+                    {{ step.comment }}
+                {% endif %}</textarea>
             </div>
-
-
+            {% if step is not None %}
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Commits</span>
+                    </label>
+                    <input type="text" placeholder="Name"
+                           name="task-commits" class="input input-bordered">
+                </div>
+            {% endif %}
             <div class="form-control">
                 <button class="btn btn-primary">Save</button>
             </div>
@@ -37,9 +50,43 @@
             <div class="form-control">
                 <label class="label">
                     <span class="label-text">Start Time</span>
+                    {{ step.start_time |date:'Y-m-d H:i' }}
                 </label>
-                <input type="datetime-local" placeholder="Start Time" name="task-step-start_time" class="input input-bordered">
+                <input
+                        {% if step is not None %}
+                            readonly="true"
+                            value="{{ step.start_time |date:'Y-m-d H:i' }}"
+                        {% endif %}
+                            name="task-step-start_time"
+                            type="datetime-local" placeholder="Start Time"
+                            class="input input-bordered">
             </div>
+            {% if step is None %}
+                <input name="task-step-status" value="OP" type="hidden">
+            {% else %}
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">End Time</span>
+                    </label>
+                    <input type="datetime-local" placeholder="End Time" name="task-step-end_time"
+                           class="input input-bordered">
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Status</span>
+                    </label>
+                    <select type="datetime-local" name="task-step-status"
+                            class="input input-bordered">
+                        {% for choice in form.fields.status.choices %}
+                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
         </div>
+
+
     </form>
 {% endblock %}

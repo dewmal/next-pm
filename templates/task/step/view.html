@@ -1,0 +1,12 @@
+{% extends "template/base.html" %}
+
+{% block title %}
+    {{ step.task.name }}
+{% endblock %}
+
+{% block content %}
+    <p>Name {{ step.name }}</p>
+    <p>Start Time {{ step.start_time }}</p>
+    <p>Comment {{ step.comment }}</p>
+    <p>Commits {{ step.commits }}</p>
+{% endblock %}

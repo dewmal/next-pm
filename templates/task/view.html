@@ -12,5 +12,28 @@
 {% endblock %}
 
 {% block content %}
-    {{ task.name }}
+    <div class="overflow-x-auto">
+        <table class="table w-full">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start Time</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for step in steps %}
+                <tr>
+                    <td>
+                        <a href="{% url 'step-view' step.id %}">
+                            {{ step.name }}
+                        </a>
+                    </td>
+                    <td>{{ step.start_time }}</td>
+                    <td>{{ step.status }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

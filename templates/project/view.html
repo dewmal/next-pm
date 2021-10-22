@@ -29,7 +29,7 @@
             {% for task in tasks %}
                 <tr>
                     <td>
-                        <a href="{% url 'project-view' task.id %}">
+                        <a href="{% url 'task-view' task.id %}">
                             {{ task.name }}
                         </a>
                     </td>

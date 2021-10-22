@@ -1,0 +1,16 @@
+{% extends "template/base.html" %}
+{% block title %}
+    <div class="flex flex-row w-full gap-4">
+
+        <h1 class="text-3xl font-bold text-gray-900">
+            {{ task.name }}
+        </h1>
+
+        <a class="btn btn-primary" href="{% url 'task-step-create' task.id %}">Add Step</a>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    {{ task.name }}
+{% endblock %}

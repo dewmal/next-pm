@@ -1,6 +1,6 @@
 from django import forms
 
-from project_detail.models import Project, Task
+from project_detail.models import Project, Task, Step
 
 
 class ProjectForm(forms.ModelForm):
@@ -12,4 +12,10 @@ class ProjectForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ["name", "description", "start_date", "expected_hours", "project"]
+        fields = ["name", "description", "start_date", "expected_hours", "project", "pull_requests"]
+
+
+class StepForm(forms.ModelForm):
+    class Meta:
+        model = Step
+        fields = ["name", "status", "start_time", "comment", "end_time", "task", "commits"]

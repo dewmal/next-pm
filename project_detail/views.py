@@ -2,8 +2,29 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 
-from .forms import ProjectForm, TaskForm
+from .forms import ProjectForm, TaskForm, StepForm
 from .models import Project, Task
+
+
+@require_http_methods(["GET", "POST"])
+def task_step_create(request, task_id):
+    task = Task.objects.get(id=task_id)
+    form = TaskForm(prefix="task-step")
+    errors = None
+    if request.method == "POST":
+        form = StepForm(request.POST, request.FILES, prefix="task-step")
+        if form.is_valid():
+            form.save()
+        else:
+            print(form.errors)
+            errors = form.errors
+
+    return render(request, "task/step/create.html", context={"task": task, "form": form, "errors": errors})
+
+
+def task_view(request, id):
+    task = Task.objects.get(id=id)
+    return render(request, "task/view.html", {"task": task})
 
 
 @require_http_methods(["GET", "POST"])

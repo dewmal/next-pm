@@ -1,0 +1,50 @@
+{% extends "template/base.html" %}
+{% block title %}Create Step for {{ task.name }}{% endblock %}
+{% block content %}
+    {% for error in errors %}
+        {{ error }}
+    {% endfor %}
+
+    <form method="post" class="grid gap-4 grid-cols-3">
+        {% csrf_token %}
+        <input name="task-step-task" value="{{ task.id }}" type="hidden">
+        <div class="col-span-2 grid gap-2 grid-cols-1">
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Name</span>
+                </label>
+                <input type="text" placeholder="Name"
+                       name="task-step-name" class="input input-bordered">
+            </div>
+
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Comment</span>
+                </label>
+                <textarea name="task-step-comment" rows="8" class="textarea h-24 textarea-bordered"
+                          placeholder="Comment"></textarea>
+            </div>
+
+
+            <div class="form-control">
+                <button class="btn btn-primary">Save</button>
+            </div>
+        </div>
+
+        <div class="col-span-1 flex flex-col">
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Start Date</span>
+                </label>
+                <input type="date" placeholder="Start Date" name="task-start_date" class="input input-bordered">
+            </div>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Expected hours</span>
+                </label>
+                <input type="number" placeholder="Expected hours" name="task-expected_hours"
+                       class="input input-bordered">
+            </div>
+        </div>
+    </form>
+{% endblock %}

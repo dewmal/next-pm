@@ -13,6 +13,24 @@
 {% endblock %}
 
 {% block content %}
+    <div class="">
+        <form method="post" class="grid gap-4 grid-cols-3">
+            {% csrf_token %}
+            <input name="task-project" value="{{ project.id }}" type="hidden">
+            <div class="col-span-2 grid gap-2 grid-cols-1">
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">End time</span>
+                    </label>
+                    <input type="text" placeholder="Name"
+                           name="task-name" class="input input-bordered">
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
     <div class="overflow-x-auto">
         <table class="table w-full">
             <thead>

@@ -22,14 +22,26 @@ class Project(models.Model):
 
 
 class Task(models.Model):
+    OPENED = 'OP'
+    FINISHED = 'FI'
+    SKIPPED = 'SK'
+    ABORTED = 'AB'
+    STEP_STATUSES = [
+        (OPENED, 'Open'),
+        (FINISHED, 'Finish'),
+        (SKIPPED, 'Skip'),
+        (ABORTED, 'Abort'),
+    ]
     name = models.CharField(max_length=160)
     description = models.TextField()
     start_date = models.DateTimeField()
+    end_date = models.DateTimeField(null=True, blank=True)
     expected_hours = models.FloatField()
     actual_hours = models.FloatField(default=0)
     project = models.ForeignKey(Project, on_delete=models.RESTRICT)
     tags = models.ManyToManyField(Tag)
     pull_requests = models.CharField(max_length=500, blank=True, null=True)
+    status = models.CharField(max_length=2, choices=STEP_STATUSES, default=OPENED)
 
 
 class Step(models.Model):

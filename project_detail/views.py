@@ -5,6 +5,11 @@ from .forms import ProjectForm, TaskForm, StepForm
 from .models import Project, Task, Step
 
 
+@require_http_methods(["POST"])
+def close_task(request, task_id):
+    task = Task.objects.get(id=task_id)
+
+
 @require_http_methods(["GET", "POST"])
 def step_view(request, step_id):
     step = Step.objects.get(id=step_id)

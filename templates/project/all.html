@@ -1,5 +1,9 @@
 {% extends "template/base.html" %}
 
+{% block title %}
+    <a class="btn btn-primary" href="{% url 'project-create' %}">Add Project</a>
+{% endblock %}
+
 {% block content %}
     <div class="overflow-x-auto">
         <table class="table w-full">

@@ -3,8 +3,8 @@ from .views import project_create, project_index, project_view, \
     task_create, task_view, task_step_create, step_view
 
 urlpatterns = [
-    path("", project_index),
-    path("create", project_create),
+    path("", project_index, name="projects"),
+    path("create", project_create,name="project-create"),
     path("view/<int:id>", project_view, name="project-view"),
     ##
     path("task/create/<int:project_id>", task_create, name="task-create"),

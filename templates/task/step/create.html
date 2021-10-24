@@ -1,5 +1,11 @@
 {% extends "template/base.html" %}
-{% block title %}Create Step for  <a href="{% url 'task-view' task.id %}">{{ task.name }}</a>{% endblock %}
+{% block title %}
+    Create Step for  <a href="{% url 'task-view' task.id %}">{{ task.name }}</a>
+
+
+    <a class="btn btn-success" href="{% url 'task-view' step.task_id %}">Back to {{ task.name }}</a>
+
+{% endblock %}
 {% block content %}
     {% for error in errors %}
         <p>{{ error }}</p>

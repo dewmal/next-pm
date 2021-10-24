@@ -1,6 +1,10 @@
 {% extends "template/base.html" %}
 
 {% block content %}
+
+    {% for error in errors %}
+        <p>{{ error }}</p>
+    {% endfor %}
     <form method="post" class="grid gap-4 grid-cols-3">
         {% csrf_token %}
         <div class="col-span-2 grid gap-2 grid-cols-1">

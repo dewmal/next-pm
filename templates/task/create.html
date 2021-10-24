@@ -1,5 +1,8 @@
 {% extends "template/base.html" %}
-{% block title %}Create Task for {{ project.name }}{% endblock %}
+{% block title %}Create Task for {{ project.name }}
+
+    <a class="btn btn-success" href="{% url 'project-view' project.id %}">Back to {{ project.name }}</a>
+{% endblock %}
 {% block content %}
     {% for error in errors %}
         {{ error }}

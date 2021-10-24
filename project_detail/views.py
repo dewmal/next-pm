@@ -60,7 +60,7 @@ def task_create(request, project_id):
     if request.method == "POST":
         form = TaskForm(request.POST, request.FILES, prefix="task")
         if form.is_valid():
-            form.save(commit=False)
+            form.save()
         else:
             print(form.errors)
             errors = form.errors
@@ -84,10 +84,11 @@ def project_view(request, id):
 @require_http_methods(["GET", "POST"])
 def project_create(request):
     form = ProjectForm(prefix="proj")
+    errors = []
     if request.method == "POST":
         form = ProjectForm(request.POST, request.FILES, prefix="proj")
         if form.is_valid():
             form.save()
         else:
-            print(form.errors)
-    return render(request, "project/create.html", {'form': form})
+            errors = form.errors
+    return render(request, "project/create.html", {'form': form, "errors": errors})

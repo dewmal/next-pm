@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'next_pm.apps.NextPmConfig',
-    'project_detail.apps.ProjectDetailConfig'
+    'project_detail.apps.ProjectDetailConfig',
+    "graphene_django"
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GRAPHENE = {
+    "SCHEMA": "project_detail.schema.schema"
+}

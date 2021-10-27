@@ -12,7 +12,7 @@ class ProjectForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ["name", "description", "start_date", "expected_hours", "project", "pull_requests"]
+        fields = ["name", "description", "start_time", "expected_hours", "project", "pull_requests","status"]
 
 
 class StepForm(forms.ModelForm):

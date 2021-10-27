@@ -13,46 +13,34 @@
 {% endblock %}
 
 {% block content %}
-    <div class="">
-        <form method="post" class="grid gap-4 grid-cols-3">
-            {% csrf_token %}
-            <input name="task-project" value="{{ project.id }}" type="hidden">
-            <div class="col-span-2 grid gap-2 grid-cols-1">
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">End time</span>
-                    </label>
-                    <input type="text" placeholder="Name"
-                           name="task-name" class="input input-bordered">
-                </div>
-            </div>
-        </form>
-    </div>
+    <task-finish-component></task-finish-component>
+    <div class="grid gap-4 grid-cols-1">
 
 
 
-    <div class="overflow-x-auto">
-        <table class="table w-full">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Start Time</th>
-                <th>Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for step in steps %}
+        <div class="overflow-x-auto">
+            <table class="table w-full">
+                <thead>
                 <tr>
-                    <td>
-                        <a href="{% url 'step-view' step.id %}">
-                            {{ step.name }}
-                        </a>
-                    </td>
-                    <td>{{ step.start_time }}</td>
-                    <td>{{ step.status }}</td>
+                    <th>Name</th>
+                    <th>Start Time</th>
+                    <th>Status</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for step in steps %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'step-view' step.id %}">
+                                {{ step.name }}
+                            </a>
+                        </td>
+                        <td>{{ step.start_time }} / {{ step.end_time }}</td>
+                        <td>{{ step.status }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}

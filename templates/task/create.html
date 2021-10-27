@@ -12,6 +12,7 @@
     <form method="post" class="grid gap-4 grid-cols-3">
         {% csrf_token %}
         <input name="task-project" value="{{ project.id }}" type="hidden">
+        <input name="task-status" value="OP" type="hidden">
         <div class="col-span-2 grid gap-2 grid-cols-1">
             <div class="form-control">
                 <label class="label">
@@ -38,9 +39,9 @@
         <div class="col-span-1 flex flex-col">
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text">Start Date</span>
+                    <span class="label-text">Start Time</span>
                 </label>
-                <input type="date" placeholder="Start Date" name="task-start_date" class="input input-bordered">
+                <input type="date" placeholder="Start Time" name="task-start_time" class="input input-bordered">
             </div>
             <div class="form-control">
                 <label class="label">

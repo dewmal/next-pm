@@ -54,7 +54,10 @@ def task_step_create(request, task_id):
 def task_view(request, id):
     task = Task.objects.get(id=id)
     steps = Step.objects.filter(task_id=id).all()
-    return render(request, "task/view.html", {"task": task, "steps": steps})
+    form = TaskForm(prefix="task", instance=task)
+    print(task.status)
+    print(form.fields['status'].choices)
+    return render(request, "task/view.html", {"task": task, "steps": steps, "form": form})
 
 
 @require_http_methods(["GET", "POST"])

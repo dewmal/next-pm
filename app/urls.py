@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 
 from next_pm.urls import urlpatterns as next_pm_urls
@@ -26,5 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include(next_pm_urls)),
     url(r'^project/', include(project_urls)),
-    url(r"graphql", GraphQLView.as_view(graphiql=True)),
+    url(r"graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]

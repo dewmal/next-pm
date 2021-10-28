@@ -55,8 +55,6 @@ def task_view(request, id):
     task = Task.objects.get(id=id)
     steps = Step.objects.filter(task_id=id).all()
     form = TaskForm(prefix="task", instance=task)
-    print(task.status)
-    print(form.fields['status'].choices)
     return render(request, "task/view.html", {"task": task, "steps": steps, "form": form})
 
 

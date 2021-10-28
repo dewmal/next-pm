@@ -11,6 +11,7 @@ class UpdateTask(graphene.Mutation):
     class Arguments:
         id = graphene.Int()
         pull_requests = graphene.String()
+        description = graphene.String()
         end_time = graphene.String()
         status = graphene.String()
 
@@ -18,6 +19,7 @@ class UpdateTask(graphene.Mutation):
     task = graphene.Field(lambda: TaskType)
 
     def mutate(root, info, id, pull_requests=None, description=None, end_time=None, status=None):
+        print(id, pull_requests, description, end_time, status)
         task = Task.objects.get(id=id)
         task.pull_requests = pull_requests if pull_requests is not None else task.pull_requests
         task.description = description if description is not None else task.description

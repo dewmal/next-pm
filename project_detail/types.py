@@ -1,3 +1,5 @@
+import graphene
+from graphene import ObjectType
 from graphene_django import DjangoObjectType
 
 from .models import Project, Task, Step, Tag
@@ -22,3 +24,8 @@ class TaskType(DjangoObjectType):
 class StepType(DjangoObjectType):
     class Meta:
         model = Step
+
+
+class TaskStatusType(ObjectType):
+    value = graphene.String()
+    name = graphene.String()

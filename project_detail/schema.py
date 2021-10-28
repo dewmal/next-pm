@@ -2,10 +2,11 @@ import graphene
 
 from project_detail.models import Project, Task
 from project_detail.mutations import UpdateTask
-from project_detail.types import ProjectType, TaskType
+from project_detail.types import ProjectType, TaskType, TaskStatusType
 
 
-class Query(graphene.ObjectType):
+class ProjectQuery(graphene.ObjectType):
+    task_status = graphene.List(TaskStatusType)
     projects = graphene.List(ProjectType)
     project = graphene.Field(ProjectType, project_id=graphene.Int())
     tasks = graphene.List(TaskType, project_id=graphene.Int())
@@ -16,9 +17,9 @@ class Query(graphene.ObjectType):
     def resolve_project(self, info, project_id):
         return Project.objects.get(id=project_id)
 
+    def resolve_task_status(self, info):
+        return map(lambda st: {"name": st[1], "value": st[0]}, Task.STEP_STATUSES)
 
-class Mutation(graphene.ObjectType):
+
+class ProjectMutation(graphene.ObjectType):
     update_task = UpdateTask.Field()
-
-
-schema = graphene.Schema(query=Query, auto_camelcase=True, mutation=Mutation)

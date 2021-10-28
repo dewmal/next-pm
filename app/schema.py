@@ -1,7 +1,14 @@
 import graphene
 
-class Query(graphene.ObjectType):
-    hello = graphene.String(default_value="Hi!")
+from project_detail.schema import ProjectMutation, ProjectQuery
 
 
-schema = graphene.Schema(query=Query)
+class RootQuery(ProjectQuery, graphene.ObjectType):
+    pass
+
+
+class RootMutation(ProjectMutation, graphene.ObjectType):
+    pass
+
+
+schema = graphene.Schema(query=RootQuery, auto_camelcase=True, mutation=RootMutation)
